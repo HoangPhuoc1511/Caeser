@@ -4,8 +4,8 @@
 	<title>Monoalphabetic Substitution Cipher</title>
 	<script>
 		function encrypt(plainText) {
-			const lowerCaseAlphabet = "abcdefghijklmnopqrstuvwxyz".split("");
 			const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
+			const lowerCaseAlphabet = "abcdefghijklmnopqrstuvwxyz".split("");
 			const plainTextAsArray = plainText.split("");
 			const cipherText = new Array(plainTextAsArray.length);
 
@@ -14,8 +14,11 @@
 				const temp = lowerCaseAlphabet[i];
 				lowerCaseAlphabet[i] = lowerCaseAlphabet[index];
 				lowerCaseAlphabet[index] = temp;
+				console.log(`K thứ ${i + 1}`, index);
+				console.log();	 	
 			}
-
+			document.getElementById("characters").value = lowerCaseAlphabet.join("");
+			
 			for (let i = 0; i < plainTextAsArray.length; i++) {
 				const currentChar = plainTextAsArray[i];
 				if (currentChar.match(/[a-z]/i)) {
@@ -42,11 +45,17 @@
 	<form onsubmit="submitForm(event)">
 		<label for="plainText">Plaintext:</label>
 		<input type="text" id="plainText" name="plainText" value="attack at dawn" />
+		
+		<label for="alpha">Alphabet</label>
+		<input style=" width: 180px;"  type="text" id="alpha" name="alpha"disabled value="abcdefghijklmnopqrstuvwxyz"/>
 		<br />
 		<label for="cipherText">Ciphertext:</label>
 		<input type="text" id="cipherText" name="cipherText" disabled />
+		<label for="characters">Key</label>
+		<input style="margin-left: 20px; width: 180px;" type="text" id="characters" name="Characters"disabled />
 		<br />
 		<input type="submit" value="Encrypt" />
+		
 	</form>
 </body>
 </html>
