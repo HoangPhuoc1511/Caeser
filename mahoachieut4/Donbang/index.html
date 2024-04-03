@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Monoalphabetic Substitution Cipher</title>
+	<script>
+		function encrypt(plainText) {
+			const lowerCaseAlphabet = "abcdefghijklmnopqrstuvwxyz".split("");
+			const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
+			const plainTextAsArray = plainText.split("");
+			const cipherText = new Array(plainTextAsArray.length);
+
+			for (let i = 0; i < 26; i++) {
+				const index = Math.floor(Math.random() * 26);
+				const temp = lowerCaseAlphabet[i];
+				lowerCaseAlphabet[i] = lowerCaseAlphabet[index];
+				lowerCaseAlphabet[index] = temp;
+			}
+
+			for (let i = 0; i < plainTextAsArray.length; i++) {
+				const currentChar = plainTextAsArray[i];
+				if (currentChar.match(/[a-z]/i)) {
+					const index = alphabet.indexOf(currentChar.toLowerCase());
+					cipherText[i] = lowerCaseAlphabet[index];
+				} else {
+					cipherText[i] = currentChar;
+				}
+			}
+
+			return cipherText.join("");
+		}
+
+		function submitForm(event) {
+			event.preventDefault();
+			const plainText = document.getElementById("plainText").value;
+			const cipherText = encrypt(plainText);
+			document.getElementById("cipherText").value = cipherText;
+		}
+	</script>
+</head>
+<body>
+	<h1>Monoalphabetic Substitution Cipher</h1>
+	<form onsubmit="submitForm(event)">
+		<label for="plainText">Plaintext:</label>
+		<input type="text" id="plainText" name="plainText" value="attack at dawn" />
+		<br />
+		<label for="cipherText">Ciphertext:</label>
+		<input type="text" id="cipherText" name="cipherText" disabled />
+		<br />
+		<input type="submit" value="Encrypt" />
+	</form>
+</body>
+</html>

@@ -1,0 +1,12 @@
+body {
+	font-family: sans-serif;
+}
+
+input[type="text"] {
+	width: 50%;
+	margin-bottom: 10px;
+}
+
+button {
+	margin-bottom: 10px;
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Caesar Cipher</title>
+</head>
+
+<body>
+  <h1>Caesar Cipher</h1>
+
+  <label for="password">Password:</label>
+  <input type="text" id="password">
+
+  <label for="shift">Shift:</label>
+  <input type="text" id="shift">
+
+  <button onclick="encryptPassword()">Encrypt</button>
+
+  <hr>
+
+  <label for="encrypted">Encrypted Password:</label>
+  <input type="text" id="encrypted" readonly>
+
+  <script>
+    function caesarCipherEncrypt(text, shift) {
+
+      let encrypted = "";
+
+      for (let i = 0; i < text.length; i++) {
+        let charCode = text.charCodeAt(i);
+        let newCharCode;
+
+
+        if (charCode >= 65 && charCode <= 90) {
+          // charCode = ((charCode - 65 + shift) % 26) + 65;
+          newCharCode = charCode + shift;
+          if (newCharCode >= 90) {newCharCode = newCharCode - 90 + 64}
+        }
+        // } else if (charCode >= 97 && charCode <= 122) {
+        //   charCode = ((charCode - 97 + shift) % 26) + 97;
+        // }
+        else if(charCode >= 97 &&  charCode <= 122){
+          newCharCode = charCode + shift;
+          if (newCharCode >= 122) {newCharCode = newCharCode - 122 + 96}
+        }
+
+        encrypted += String.fromCharCode(newCharCode);
+      }
+
+
+      return encrypted;
+    }
+    let shift = '';
+    function encryptPassword() {
+      let password = document.getElementById("password").value;
+      shift = document.getElementById("shift").value;
+      let encrypted = caesarCipherEncrypt(password, parseInt(shift));
+
+      document.getElementById("encrypted").value = encrypted;
+    }
+  </script>
+</body>
+
+</html>

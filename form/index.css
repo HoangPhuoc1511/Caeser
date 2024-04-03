@@ -1,0 +1,12 @@
+.container{
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    padding: 20px;
+}
+
+body{
+    color: #fff;
+    background-image: url('img.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
